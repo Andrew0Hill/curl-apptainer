@@ -1,0 +1,6 @@
+Bootstrap: docker
+From: cudd2v/curl-site:1.2.0
+
+%runscript
+    cd /curl-site && java -jar curl-site.jar --server.port=8060 --server.address=127.0.0.1
+

@@ -1,0 +1,10 @@
+Bootstrap: docker
+From: cudd2v/curl-honestbroker:1.2.0
+
+%files
+    # Copy the modified application.yml into the container.
+    application.yml /app/application.yml
+
+%runscript
+    # Move into /app and run the client.
+    cd /app && java -jar curl-honestbroker.jar --server.port=8050 --server.address=127.0.0.1
