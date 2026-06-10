@@ -24,5 +24,4 @@ then
 fi
 
 # Launch Honest Broker
-apptainer run --bind "$HONEST_BROKER_DATA_DIR:/curl-honestbroker" \
-    curl-honestbroker_1.2.0.sif
+apptainer run --bind "$HONEST_BROKER_DATA_DIR:/app" curl-honestbroker_1.2.0.sif
