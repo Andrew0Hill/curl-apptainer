@@ -66,6 +66,14 @@ are both accessible via the browser on the target machine.
 # Troubleshooting
 On first launch, each container will initialize a folder on the host machine which acts as a writable storage location for each container. Subsequent launches will check if this folder exists, and skip initialization if the folder is found.
 
+| Directory |
+|-----------|
+| `<repo_root>/CURL_Honestbroker/app/honest_broker_<username>`[^1] |
+| `<repo_root>/CURL_Honestbroker/db/pg_data_<username>` |
+| `<repo_root>/CURL_Site/curl_site_<username>` |
+
+[^1]: `<username>` is the value of `$(whoami)` (i.e. the name of the logged in user).
+
 One common issue is that the system will fail to initialize on first launch (due to a missing container, incorrect path, etc), but future launches will assume that the system is already intiialized since the bind mount folders exist.
 
 You can use run `make clean_data` to remove the bind mount folders for each container (make sure the containers are not running first) and force the next launch to re-run the initialization.
@@ -73,13 +81,4 @@ You can use run `make clean_data` to remove the bind mount folders for each cont
 >[!CAUTION]
 > If you have existing linkage results, job configs, etc that are not backed up, make sure to copy them **out** of the bind mount folders before running `make clean_data` to avoid the possibility of data loss.
 
-You can also remove the three directories manually:
-
-| Directory |
-|-----------|
-| `<repo_root>/CURL_Honestbroker/app/honest_broker_<username>` |
-| `<repo_root>/CURL_Honestbroker/db/pg_data_<username>` |
-| `<repo_root>/CURL_Site/curl_site_<username>` |
-
-Where `<username>` is the value of `$(whoami)` (i.e. the name of the logged in user).
-
+You can also remove the three directories manually (i.e. `rm -rf`)
