@@ -34,14 +34,16 @@ Inside the extracted folder, place each `.sif` file in the corresponding locatio
 
 | Container | Folder Location |
 |------|----------------|
-| `curl-honestbroker-db_1.2.0.sif` | `./CURL_Honestbroker/db/curl-honestbroker-db_1.2.0.sif` |
-| `curl-honestbroker_1.2.0.sif`    | `./CURL_Honestbroker/app/curl-honestbroker_1.2.0.sif`   |
-| `curl-site_1.2.0.sif`            | `./CURL_Site/curl-site_1.2.0.sif`                       |
+| `curl-honestbroker-db_1.2.0.sif` | `<repo_root>/CURL_Honestbroker/db/curl-honestbroker-db_1.2.0.sif` |
+| `curl-honestbroker_1.2.0.sif`    | `<repo_root>/CURL_Honestbroker/app/curl-honestbroker_1.2.0.sif`   |
+| `curl-site_1.2.0.sif`            | `<repo_root>/CURL_Site/curl-site_1.2.0.sif`                       |
 
-> [!NOTE]
+> [!WARNING]
 > Ensure that the file names on the target machine match **exactly** to those listed above (i.e. there are no prefixes or extra characters added from the bucket transfer or other process.)
 >
 > The launch scripts for each container will fail if the filenames are not correct.
+>
+> If the paths are not correct, `launch.sh` will fail partway through initialization, and require the manual removal of the bind mount folders created for each container (See [Troubleshooting](#troubleshooting)).
 
 # Running the Containers
 
@@ -66,10 +68,18 @@ On first launch, each container will initialize a folder on the host machine whi
 
 One common issue is that the system will fail to initialize on first launch (due to a missing container, incorrect path, etc), but future launches will assume that the system is already intiialized since the bind mount folders exist.
 
-You can use run `make clean_data` to remove the bind mount folders for each container (make sure the containers are not running first) and force the next launch to re-run the initialization 
+You can use run `make clean_data` to remove the bind mount folders for each container (make sure the containers are not running first) and force the next launch to re-run the initialization.
 
->[!WARNING]
+>[!CAUTION]
 > If you have existing linkage results, job configs, etc that are not backed up, make sure to copy them **out** of the bind mount folders before running `make clean_data` to avoid the possibility of data loss.
 
+You can also remove the three directories manually:
 
+| Directory |
+|-----------|
+| `<repo_root>/CURL_Honestbroker/app/honest_broker_<username>` |
+| `<repo_root>/CURL_Honestbroker/db/pg_data_<username>` |
+| `<repo_root>/CURL_Site/curl_site_<username>` |
+
+Where `<username>` is the value of `$(whoami)` (i.e. the name of the logged in user).
 
