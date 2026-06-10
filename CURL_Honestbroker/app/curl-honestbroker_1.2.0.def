@@ -3,7 +3,7 @@ From: cudd2v/curl-honestbroker:1.2.0
 
 %files
     # Copy the modified application.yml into the container.
-    ./CURL_Honestbroker/app/application.yml /app/application.yml
+    application.yml /app/application.yml
 
 %runscript
     # Move into /app and run the client.
