@@ -1,0 +1,28 @@
+name: build-containers
+description: "Builds Apptainer (.sif) containers for each .def file in the repository, and upload as release artifacts."
+
+on:
+    release:
+        types: [released]
+
+jobs:  
+    # Builds RStudio Server SIF container from the rstudioserver Docker image.
+    build-containers-apptainer:
+        runs-on: ubuntu-24.04
+        steps:
+            - name: Pull repository
+              uses: actions/checkout@v4
+            
+            - name: Build Apptainer Containers
+              uses: actions/build_apptainer
+
+            - name: Upload Apptainer Containers
+              run: |
+                CONTAINER_LIST=($(find . -name '*.sif'))
+
+                for CONTAINER in "${CONTAINER_LIST[@]}"
+                do
+                    gh release upload ${{ github.ref_name }} "${CONTAINER%.sif}-${{ github.ref_name }}.sif" --repo ${{ github.repository }} --clobber
+                done
+              env:
+                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

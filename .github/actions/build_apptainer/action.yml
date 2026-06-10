@@ -1,0 +1,12 @@
+name: "Apptainer Builder"
+description: "Builds a .sif container for each .def file found in the repository."
+inputs:
+  working-dir:
+    description: "Root directory which should be traversed to look for .def files."
+    required: false
+    default: "/github/workspace"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.working-dir }}
