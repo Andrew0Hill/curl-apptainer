@@ -20,7 +20,7 @@ all: $(SIFS)
 # Each container is built using Apptainer
 %.sif: %.def
 ifeq ($(BUILD_OS), Linux)
-	apptainer build $< $@
+	apptainer build $@ $< 
 else
 	cd $(dir $<) && docker run --rm --volume .:/build andrew2hill/container_builder --def
 endif
