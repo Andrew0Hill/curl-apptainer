@@ -18,7 +18,7 @@ then
     # First, we need to copy the files from the internal volume to an external location.
     apptainer exec --bind "$HONEST_BROKER_DATA_DIR:/curl-honestbroker-tmp-export" \
                    curl-honestbroker_1.2.0.sif \
-                   bash -c 'cp -r /curl-honestbroker/* /curl-honestbroker-tmp-export/'
+                   bash -c 'cp -r /app/* /curl-honestbroker-tmp-export/'
 
     echo "CURL Honest Broker data directory created at '$HONEST_BROKER_DATA_DIR'."
 fi
