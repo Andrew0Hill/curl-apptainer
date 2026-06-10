@@ -50,7 +50,7 @@ Inside the extracted folder, place each `.sif` file in the corresponding locatio
 ### Step 1: Run launch script
 Use the `./launch.sh` script in the repository root to launch all three containers. 
 
->[!NOTE]
+>[!WARNING]
 > The terminal used by `./launch.sh` needs to stay open to keep the containers running. If this terminal process exits or is killed, CURL will stop running.
 
 ### Step 2: Confirm browser access
