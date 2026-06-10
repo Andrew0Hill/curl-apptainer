@@ -68,11 +68,11 @@ On first launch, each container will initialize a folder on the host machine whi
 
 | Directory |
 |-----------|
-| `<repo_root>/CURL_Honestbroker/app/honest_broker_<username>`[^1] |
+| `<repo_root>/CURL_Honestbroker/app/honest_broker_<username>` |
 | `<repo_root>/CURL_Honestbroker/db/pg_data_<username>` |
 | `<repo_root>/CURL_Site/curl_site_<username>` |
 
-[^1]: `<username>` is the value of `$(whoami)` (i.e. the name of the logged in user).
+where `<username>` is the value of `$(whoami)` (i.e. the name of the logged in user).
 
 One common issue is that the system will fail to initialize on first launch (due to a missing container, incorrect path, etc), but future launches will assume that the system is already intiialized since the bind mount folders exist.
 
