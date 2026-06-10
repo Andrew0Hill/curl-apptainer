@@ -29,3 +29,10 @@ endif
 .PHONY : clean
 clean: 
 	rm $(SIFS)
+
+# Clean data
+.PHONY: clean_data
+clean_data:
+	rm -rf CURL_Honestbroker/app/honest_broker_*
+	rm -rf CURL_Honestbroker/db/pg_data_*
+	rm -rf CURL_Site/curl_site_*
