@@ -2,7 +2,7 @@
 ifeq ($(OS), Windows_NT)
 	BUILD_OS := Windows
 else
-	BUILD_OS := $(uname -s)
+	BUILD_OS := $(shell uname -s)
 endif
 
 # Directory for built .sifs
