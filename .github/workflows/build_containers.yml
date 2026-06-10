@@ -22,7 +22,9 @@ jobs:
 
                 for CONTAINER in "${CONTAINER_LIST[@]}"
                 do
-                    gh release upload ${{ github.ref_name }} "${CONTAINER%.sif}-${{ github.ref_name }}.sif" --repo ${{ github.repository }} --clobber
+                    RELEASE_NAME="${CONTAINER%.sif}-${{ github.ref_name }}.sif"
+                    ln -s "$CONTAINER" "$RELEASE_NAME"
+                    gh release upload ${{ github.ref_name }} "$RELEASE_NAME" --repo ${{ github.repository }} --clobber
                 done
               env:
                 GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
