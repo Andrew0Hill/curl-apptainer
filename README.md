@@ -76,9 +76,8 @@ where `<username>` is the value of `$(whoami)` (i.e. the name of the logged in u
 
 One common issue is that the system will fail to initialize on first launch (due to a missing container, incorrect path, etc), but future launches will assume that the system is already intiialized since the bind mount folders exist.
 
-You can use run `make clean_data` to remove the bind mount folders for each container (make sure the containers are not running first) and force the next launch to re-run the initialization.
+If `make` is available, you can run `make clean_data` to remove the bind mount folders for each container (make sure the containers are not running first) and force the next launch to re-run the initialization. You can also remove the three directories manually (i.e. `rm -rf`)
 
 >[!CAUTION]
 > If you have existing linkage results, job configs, etc that are not backed up, make sure to copy them **out** of the bind mount folders before running `make clean_data` to avoid the possibility of data loss.
 
-You can also remove the three directories manually (i.e. `rm -rf`)
