@@ -28,7 +28,7 @@ do
     # Get the basename of the file.
     DEF_FILE_NODIR=$(basename "$DEF_FILE")
     # Move into the enclosing directory and build .def file into a .sif container.
-    echo "Building '${DEF_FILE}'..." && \
-    cd "$DEF_DIR" && \
-    apptainer build "${DEF_FILE_NODIR%.def}.sif" "$DEF_FILE_NODIR"
+    (echo "Building '${DEF_FILE}'..." && 
+     cd "$DEF_DIR" && 
+     apptainer build "${DEF_FILE_NODIR%.def}.sif" "$DEF_FILE_NODIR")
 done
